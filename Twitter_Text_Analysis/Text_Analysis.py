@@ -4,7 +4,6 @@ from tweepy import Stream
 from tweepy import API
 from tweepy import Cursor
 import re
-import nltk
 import credentials
 import pandas as pd
 import numpy as np
