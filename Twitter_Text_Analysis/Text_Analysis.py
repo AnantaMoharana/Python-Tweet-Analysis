@@ -4,6 +4,7 @@ from tweepy import Stream
 from tweepy import API
 from tweepy import Cursor
 import re
+import nltk
 import credentials
 import pandas as pd
 import numpy as np
@@ -144,7 +145,7 @@ if __name__ == "__main__":
 
    api=client.get_twitter_client_api()
    
-   tweets=api.user_timeline(screen_name="JoeBiden", count=250)
+   tweets=api.user_timeline(screen_name="JoeBiden", count=5)
 
 
    text=TweetAnalysis().retrieveText(tweets)
