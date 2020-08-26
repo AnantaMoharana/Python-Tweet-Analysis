@@ -8,7 +8,6 @@ import credentials
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#right now, I am trying to see how pushing on GitHub works so please ignore this push
 #Twitter Client Class
 class TwitterClient():
     def __init__(self,twitter_user=None):
@@ -126,7 +125,7 @@ class TweetAnalysis():
                 counts[word] +=1
             else:
                 counts[word]=1
-        #return counts
+        
 
         copy=[]
         for k,v in counts.items():
@@ -145,23 +144,53 @@ if __name__ == "__main__":
 
    api=client.get_twitter_client_api()
    
-   tweets=api.user_timeline(screen_name="JoeBiden", count=5)
+   tweets=api.user_timeline(screen_name="BernieSanders", count=100)
+   df = analyzer.tweets_to_data_frame(tweets) 
+  
+       
+   #build a version that takes user input
+#----
+
+   #text=TweetAnalysis().retrieveText(tweets)
+   #noURL_text=analyzer.removeURl(text)
+   #words=analyzer.SplitTweets(noURL_text)
+   #filt=analyzer.removeStopWords(words)
+   #counted=analyzer.count_occurences(filt)
+   #print(counted[:5])
+   #counted=pd.DataFrame(counted[:15],columns=['Count','Word'])
+   #print(counted)
+   #fig, ax = plt.subplots(figsize=(8,8))
+   #countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
+
+   #ax.set_title("Top 15 Words in @BernieSanders Last 250 Tweets")
+   #plt.show()
+
+   #df=analyzer.tweets_to_data_frame(tweets)
+#------
+   #Makes a Layered TimeSeries plot of likes, retweets, and length of the tweet
+   #time_likes=pd.Series(data=df['likes'].values, index=df['date'])
+   #time_likes.plot(figsize=(20, 5), label="Number of Likes", legend=True, color='c')
+
+   #time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
+   #time_retweets.plot(figsize=(20, 5), label="Number of Retweets", legend=True, color='m')
 
 
-   text=TweetAnalysis().retrieveText(tweets)
-   noURL_text=analyzer.removeURl(text)
-   words=analyzer.SplitTweets(noURL_text)
-   filt=analyzer.removeStopWords(words)
-   counted=analyzer.count_occurences(filt)
-   #print(counted[:10])
-   counted=pd.DataFrame(counted[:10],columns=['Count','Word'])
+   #plt.show()
 
-   fig, ax = plt.subplots(figsize=(8,8))
-   countplot=counted[:10]
-   countplot.plot.barh(x='Word',y='Count',ax=ax,color="blue")
+   # Layered Time Series:
+  # time_likes = pd.Series(data=df['likes'].values, index=df['date'])
+   #time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
 
-   ax.set_title("Most Common Words in a Users Recent Tweets")
+   time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
+   time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
+   plt.title('Tweet Analysis for @JoeBiden')
+   plt.xlabel('Date')
+   plt.ylabel('Number')
    plt.show()
+
+   
+   
+
 
    
    
