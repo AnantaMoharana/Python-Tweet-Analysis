@@ -143,8 +143,9 @@ if __name__ == "__main__":
    stream=TwitterStreams()
 
    api=client.get_twitter_client_api()
-   
-   tweets=api.user_timeline(screen_name="BernieSanders", count=100)
+   name = input("Enter screen name:")
+   tweet_count = input("Enter count:")
+   tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
   
        
@@ -167,16 +168,6 @@ if __name__ == "__main__":
 
    #df=analyzer.tweets_to_data_frame(tweets)
 #------
-   #Makes a Layered TimeSeries plot of likes, retweets, and length of the tweet
-   #time_likes=pd.Series(data=df['likes'].values, index=df['date'])
-   #time_likes.plot(figsize=(20, 5), label="Number of Likes", legend=True, color='c')
-
-   #time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
-   #time_retweets.plot(figsize=(20, 5), label="Number of Retweets", legend=True, color='m')
-
-
-   #plt.show()
-
    # Layered Time Series:
   # time_likes = pd.Series(data=df['likes'].values, index=df['date'])
    #time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
