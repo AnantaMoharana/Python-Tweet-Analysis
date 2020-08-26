@@ -144,7 +144,7 @@ if __name__ == "__main__":
 
    api=client.get_twitter_client_api()
    
-   tweets=api.user_timeline(screen_name="BernieSanders", count=250)
+   tweets=api.user_timeline(screen_name="BernieSanders", count=5)
 
   
        
