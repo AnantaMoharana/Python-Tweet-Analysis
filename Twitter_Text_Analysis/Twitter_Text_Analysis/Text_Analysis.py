@@ -149,7 +149,7 @@ if __name__ == "__main__":
    tweet_count = input()
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
-   print("What data do you want: \nMost common words in last %s tweets(common) \nLayered Time Series (LTS) " %tweet_count)
+   print("What data do you want: \nMost common words in last %s tweets (CMN) \nLayered Time Series (LTS) " %tweet_count)
    data_wanted = input()
        
 #----""
