@@ -151,7 +151,6 @@ if __name__ == "__main__":
    df = analyzer.tweets_to_data_frame(tweets) 
   
        
-   #build a version that takes user input
 #----
 
    #text=TweetAnalysis().retrieveText(tweets)
@@ -165,14 +164,14 @@ if __name__ == "__main__":
    #fig, ax = plt.subplots(figsize=(8,8))
    #countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
 
-   #ax.set_title("Top 15 Words in @BernieSanders Last 250 Tweets")
+   #ax.set_title("Top 15 Words in @%s Last 250 Tweets" % name)
    #plt.show()
 
    #df=analyzer.tweets_to_data_frame(tweets)
 #------
    # Layered Time Series:
-  # time_likes = pd.Series(data=df['likes'].values, index=df['date'])
-   #time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
+   time_likes = pd.Series(data=df['likes'].values, index=df['date'])
+   time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
 
    time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
    time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
