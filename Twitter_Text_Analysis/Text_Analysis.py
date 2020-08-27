@@ -8,6 +8,7 @@ import credentials
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+#right now, I am trying to see how pushing on GitHub works so please ignore this push
 #Twitter Client Class
 class TwitterClient():
     def __init__(self,twitter_user=None):
