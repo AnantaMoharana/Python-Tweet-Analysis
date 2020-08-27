@@ -143,8 +143,10 @@ if __name__ == "__main__":
    stream=TwitterStreams()
 
    api=client.get_twitter_client_api()
-   name = input("Enter screen name:")
-   tweet_count = input("Enter count:")
+   print("Enter screen name:")
+   name =input()
+   print("Enter count:")
+   tweet_count = input()
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
   
@@ -174,7 +176,7 @@ if __name__ == "__main__":
 
    time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
    time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
-   plt.title('Tweet Analysis for @JoeBiden')
+   plt.title('Tweet Analysis for @ %s' % name)
    plt.xlabel('Date')
    plt.ylabel('Number')
    plt.show()
