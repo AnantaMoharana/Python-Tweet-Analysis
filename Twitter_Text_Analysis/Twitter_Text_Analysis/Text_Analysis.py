@@ -149,9 +149,10 @@ if __name__ == "__main__":
    tweet_count = input()
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
-  
+   print("What data do you want: \nMost common words in last %s tweets(common) \nLayered Time Series (LTS) " %tweet_count)
+   data_wanted = input()
        
-#----
+#----""
 
    #text=TweetAnalysis().retrieveText(tweets)
    #noURL_text=analyzer.removeURl(text)
@@ -164,7 +165,7 @@ if __name__ == "__main__":
    #fig, ax = plt.subplots(figsize=(8,8))
    #countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
 
-   #ax.set_title("Top 15 Words in @%s Last 250 Tweets" % name)
+   #ax.set_title("Top " + tweetcount + " Words in @%s Last 250 Tweets" % name)
    #plt.show()
 
    #df=analyzer.tweets_to_data_frame(tweets)
