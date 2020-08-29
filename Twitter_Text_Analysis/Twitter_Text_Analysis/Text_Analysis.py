@@ -150,8 +150,8 @@ if __name__ == "__main__":
    df = analyzer.tweets_to_data_frame(tweets) 
    print (df)
 
-    #def build_barGraph(self,tweet)
-     #   for tweet in tweets
+   def build_barGraph(self,tweets):
+    for tweet in tweets:
         objects = ('0-32 ','33-64 ','65-96 ','97-128 ','129-160+ ')
         y_pos = np.arrange(len(objects))
         length = len(tweet)
