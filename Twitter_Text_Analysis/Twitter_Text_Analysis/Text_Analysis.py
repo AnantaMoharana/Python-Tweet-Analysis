@@ -144,28 +144,34 @@ if __name__ == "__main__":
    stream=TwitterStreams()
 
    api=client.get_twitter_client_api()
-   name = input("Enter screen name:")
-   tweet_count = input("Enter count:")
+   print("Enter screen name:")
+   name =input()
+   print("Enter count:")
+   tweet_count = input()
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
+<<<<<<< HEAD
    print (df)
 
     #def build_barGraph(self,tweet)
      #   for tweet in tweets
-        objects = ('0-32 ','33-64 ','65-96 ','97-128 ','129-160+ ')
-        y_pos = np.arrange(len(objects))
-        length = len(tweet)
-        plt.barh(y_pos, length)
-        plt.xticks(y_pos, length)
-        plt.ylabel('Length of Tweets')
-        plt.title('Length of Tweets of' )
-        plt.show()
+       # objects = ('0-32 ','33-64 ','65-96 ','97-128 ','129-160+ ')
+        #y_pos = np.arrange(len(objects))
+        #length = len(tweet)
+        #plt.barh(y_pos, length)
+        #plt.xticks(y_pos, length)
+        #plt.ylabel('Length of Tweets')
+        #plt.title('Length of Tweets of' )
+        #plt.show()
 
 
   
+=======
+   print("What data do you want: \nMost common words in last %s tweets (CMN) \nLayered Time Series (LTS) " %tweet_count)
+   data_wanted = input()
+>>>>>>> 333bcd53acc4545f54db3e7abd85f7790486f40e
        
-   #build a version that takes user input
-#----
+#----""
 
    #text=TweetAnalysis().retrieveText(tweets)
    #noURL_text=analyzer.removeURl(text)
@@ -178,21 +184,30 @@ if __name__ == "__main__":
    #fig, ax = plt.subplots(figsize=(8,8))
    #countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
 
-   #ax.set_title("Top 15 Words in @BernieSanders Last 250 Tweets")
+   #ax.set_title("Top " + tweetcount + " Words in @%s Last 250 Tweets" % name)
    #plt.show()
 
    #df=analyzer.tweets_to_data_frame(tweets)
 #------
    # Layered Time Series:
-  # time_likes = pd.Series(data=df['likes'].values, index=df['date'])
-   #time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
+   time_likes = pd.Series(data=df['likes'].values, index=df['date'])
+   time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
 
+<<<<<<< HEAD
    #time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
    #time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
    #plt.title('Tweet Analysis for @JoeBiden')
    #plt.xlabel('Date')
    #plt.ylabel('Number')
    #plt.show()
+=======
+   time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
+   time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
+   plt.title('Tweet Analysis for @ %s' % name)
+   plt.xlabel('Date')
+   plt.ylabel('Number')
+   plt.show()
+>>>>>>> 333bcd53acc4545f54db3e7abd85f7790486f40e
 
    
    
