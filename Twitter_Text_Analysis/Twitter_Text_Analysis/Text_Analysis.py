@@ -7,6 +7,7 @@ import re
 import credentials
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt; plt.rcdefaults()
 import matplotlib.pyplot as plt
 #Twitter Client Class
 class TwitterClient():
@@ -147,6 +148,20 @@ if __name__ == "__main__":
    tweet_count = input("Enter count:")
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
    df = analyzer.tweets_to_data_frame(tweets) 
+   print (df)
+
+def build_barGraph(self,tweet)
+for tweet in tweets
+objects = ('0-32 ','33-64 ','65-96 ','97-128 ','129-160+ ')
+y_pos = np.arrange(len(objects))
+length = len(tweet)
+plt.barh(y_pos, length)
+plt.xticks(y_pos, length)
+plt.ylabel('Length of Tweets')
+plt.title('Length of Tweets of' )
+plt.show()
+
+
   
        
    #build a version that takes user input
@@ -172,12 +187,12 @@ if __name__ == "__main__":
   # time_likes = pd.Series(data=df['likes'].values, index=df['date'])
    #time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
 
-   time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
-   time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
-   plt.title('Tweet Analysis for @JoeBiden')
-   plt.xlabel('Date')
-   plt.ylabel('Number')
-   plt.show()
+   #time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
+   #time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
+   #plt.title('Tweet Analysis for @JoeBiden')
+   #plt.xlabel('Date')
+   #plt.ylabel('Number')
+   #plt.show()
 
    
    
