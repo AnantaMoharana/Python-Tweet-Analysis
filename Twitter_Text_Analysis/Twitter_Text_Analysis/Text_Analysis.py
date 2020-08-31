@@ -7,7 +7,6 @@ import re
 import credentials
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt; plt.rcdefaults()
 import matplotlib.pyplot as plt
 #Twitter Client Class
 class TwitterClient():
@@ -150,16 +149,37 @@ if __name__ == "__main__":
    df = analyzer.tweets_to_data_frame(tweets) 
    print (df)
 
-   def build_barGraph(self,tweets):
+
+def build_barGraphpanda(tweets,self):
+    Tweeted_word032=[]
+    Tweeted_word3264=[]
+    Tweeted_word6496=[]
+    Tweeted_word96128 =[]
+    Tweeted_word128160=[]
+
     for tweet in tweets:
-        objects = ('0-32 ','33-64 ','65-96 ','97-128 ','129-160+ ')
-        y_pos = np.arrange(len(objects))
-        length = len(tweet)
-        plt.barh(y_pos, length)
-        plt.xticks(y_pos, length)
-        plt.ylabel('Length of Tweets')
-        plt.title('Length of Tweets of' )
-        plt.show()
+        if len(tweet) == 0:
+            break
+        if len(tweet)> 0 and len(tweet) <= 32:
+            Tweeted_word032.append(tweet)
+        if len(tweet)> 32 and len(tweet) <= 64:
+            Tweeted_word3264.append(tweet)
+        if len(tweet)> 65 and len(tweet) <= 96:
+            Tweeted_word6496.append(tweet)
+        if len(tweet)> 97 and len(tweet) <= 128:
+            Tweeted_word96128.append(tweet)
+        if len(tweet)> 129:
+            Tweeted_word128160.append(tweet)
+
+    data ={
+        "Length of Tweets" : "0-32 ","33-64","65-96 ","97-128 ","129-160+ "
+        "Length": [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len(Tweeted_word96128),len(Tweeted_word128160)]
+        }
+    dataframe = pd.DataFrame(data=data)
+
+    df.plot.bar(x="Length of Tweets", y="Length", rot=70, title="Length of Tweets")
+        
+    plt.show(block=True)
 
 
   
