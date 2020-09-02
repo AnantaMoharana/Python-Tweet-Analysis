@@ -172,8 +172,13 @@ def build_barGraphpanda(tweets,self):
             Tweeted_word128160.append(tweet)
 
     data ={
+<<<<<<< HEAD
         'Length of Tweets' : '0-32 ','33-64','65-96 ','97-128 ','129-160+ '
         'Length': [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len(Tweeted_word96128),len(Tweeted_word128160)]
+=======
+        "Length of Tweets" : "0-32 ","33-64 ","65-96 ","97-128 ","129-160+ "
+        "Length": [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len(Tweeted_word96128),len(Tweeted_word128160)]
+>>>>>>> c0e0b1461c01ce1771f735bdcf2f434f35834601
         }
     dataframe = pd.DataFrame(data=data)
 
@@ -213,7 +218,7 @@ def build_barGraphpanda(tweets,self):
    #plt.xlabel('Date')
    #plt.ylabel('Number')
    #plt.show()
-#this is for the push again, please ignore
+
    
    
 
