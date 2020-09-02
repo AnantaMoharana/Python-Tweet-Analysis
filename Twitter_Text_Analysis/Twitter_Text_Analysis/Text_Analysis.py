@@ -182,7 +182,7 @@ def build_barGraphpanda(tweets,self):
         }
     dataframe = pd.DataFrame(data=data)
 
-    df.plot.bar(x="Length of Tweets", y="Length", rot=70, title="Length of Tweets")
+    df.plot.bar(x="Length of Tweets", y="Length", rot=0, title="Length of Tweets")
         
     plt.show(block=True)
 
