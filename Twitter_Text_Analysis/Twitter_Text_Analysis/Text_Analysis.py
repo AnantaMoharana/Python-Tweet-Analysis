@@ -198,7 +198,7 @@ def build_barGraphpanda(tweets,self):
    #fig, ax = plt.subplots(figsize=(8,8))
    #countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
 
-   #ax.set_title("Top 15 Words in @BernieSanders Last 250 Tweets")
+   #ax.set_title("Top 15 Words in @"+ name +" Last "+ tweet_count +" Tweets")
    #plt.show()
 
    #df=analyzer.tweets_to_data_frame(tweets)
@@ -209,7 +209,7 @@ def build_barGraphpanda(tweets,self):
 
    #time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
    #time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
-   #plt.title('Tweet Analysis for @JoeBiden')
+   #plt.title('Tweet Analysis for @JoeBiden') 
    #plt.xlabel('Date')
    #plt.ylabel('Number')
    #plt.show()
