@@ -21,7 +21,7 @@ class TwitterClient():
     def get_user_timeline_tweets(self,num_tweets):
         tweets=[]
         for tweet in Cursor(self.twitter_client.user_timeline,id=self.twitter_user,tweet_mode='extended').items(num_tweets):
-                tweets.append(tweet)
+            tweets.append(tweet)
         
         return tweets
     
