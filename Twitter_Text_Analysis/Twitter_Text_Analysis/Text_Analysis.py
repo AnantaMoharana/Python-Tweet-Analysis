@@ -10,7 +10,7 @@ import credentials
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#Twitter Client Class
+#Twitter Client Class"A
 class TwitterClient():
     def __init__(self,twitter_user=None):
         self.auth=TwitterAuthentication().authenticateApp()
@@ -155,7 +155,7 @@ if __name__ == "__main__":
    print("For a bar graph which displays @%s's top 15 topics type B\n" %name)
    print("For a time series plot which shows how the number of @%s's retweets and likes change over time type C" %name)
 
-   instruction=input("Select an Option:")
+   instruction=input("Select an Option and be sure to put it around quotes:")
 
    if instruction=="A":
       zero_forty=0
