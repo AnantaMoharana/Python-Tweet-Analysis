@@ -134,6 +134,35 @@ class TweetAnalysis():
         copy=sorted(copy,reverse=True)
 
         return copy
+    """
+    def build_barGraphpanda(self,tweets):
+        Tweeted_word032=[]
+        Tweeted_word3264=[]
+        Tweeted_word6496=[]
+        Tweeted_word96128 =[]
+        Tweeted_word128160=[]
+
+        for tweet in tweets:
+            if len(tweet) == 0:
+                break
+            if len(tweet)> 0 and len(tweet) <= 32:
+                Tweeted_word032.append(tweet)
+            if len(tweet)> 32 and len(tweet) <= 64:
+                Tweeted_word3264.append(tweet)
+            if len(tweet)> 65 and len(tweet) <= 96:
+                Tweeted_word6496.append(tweet)
+            if len(tweet)> 97 and len(tweet) <= 128:
+                Tweeted_word96128.append(tweet)
+            if len(tweet)> 129:
+                Tweeted_word128160.append(tweet)
+        data = {
+            "Length of Tweets" : ("0-32 ","33-64 ","65-96 ","97-128 ","129-160+ "),
+            "Length": [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len (Tweeted_word96128),len(Tweeted_word128160)]
+        }
+
+        print(data)
+        """
+
 
 
 
@@ -141,45 +170,106 @@ if __name__ == "__main__":
    client=TwitterClient()
    analyzer=TweetAnalysis()
    stream=TwitterStreams()
-
+   print("Welcome to the Tweet Analysis Tool\n")
+   print('To Continue please enter a screen name, and be sure to put it around quotes.\n For example "FCBayern"\n ')
    api=client.get_twitter_client_api()
    name = input("Enter screen name:")
+   print("Next Please input the amount of tweets you wish to analyse.\n")
    tweet_count = input("Enter count:")
    tweets=api.user_timeline(screen_name=name, count=tweet_count)
-   df = analyzer.tweets_to_data_frame(tweets) 
-   print (df)
+   df=analyzer.tweets_to_data_frame(tweets)
+   print("Next please select how you wish to analyse the data\n")
+   print("For a bar graph which displays the number of @%s's tweets organized by length type A\n" %name)
+   print("For a bar graph which displays @%s's top 15 topics type B\n" %name)
+   print("For a time series plot which shows how the number of @%s's retweets and likes change over time type C" %name)
 
+   instruction=input("Select an Option:")
 
-def build_barGraphpanda(tweets,self):
-    Tweeted_word032=[]
-    Tweeted_word3264=[]
-    Tweeted_word6496=[]
-    Tweeted_word96128 =[]
-    Tweeted_word128160=[]
+   if instruction=="A":
+      zero_forty=0
+      forty_eighty=0
+      eighty_onetwenty=0
+      onetwenty_onesixty=0
 
-    for tweet in tweets:
-        if len(tweet) == 0:
-            break
-        if len(tweet)> 0 and len(tweet) <= 32:
-            Tweeted_word032.append(tweet)
-        if len(tweet)> 32 and len(tweet) <= 64:
-            Tweeted_word3264.append(tweet)
-        if len(tweet)> 65 and len(tweet) <= 96:
-            Tweeted_word6496.append(tweet)
-        if len(tweet)> 97 and len(tweet) <= 128:
-            Tweeted_word96128.append(tweet)
-        if len(tweet)> 129:
-            Tweeted_word128160.append(tweet)
-    data = {
-        "Length of Tweets" : ("0-32 ","33-64 ","65-96 ","97-128 ","129-160+ "),
-        "Length": [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len(Tweeted_word96128),len(Tweeted_word128160)]
-    }
-
-dataframe = pd.DataFrame(data=data)
-
-dataframe.plot.bar( x="Length of Tweets", y="Length", rot=70, title="Length of Tweets")
+      for i in range(0,tweet_count):
+          x=df['len'][i]
+          if x in range(0,40):
+           zero_forty=zero_forty+1
+          if x in range(40,80):
+              forty_eighty=forty_eighty+1
+          if x in range(80,120):
+              eighty_onetwenty=eighty_onetwenty+1
+          if x in range(120,160):
+              onetwenty_onesixty=onetwenty_onesixty+1
     
-plt.show(block=True)
+   #start assembling the bar graph
+      ranges=('0 - 40','40 - 80','80 - 120','120 - 160')
+      y=np.arange(len(ranges))
+      values=[zero_forty,forty_eighty,eighty_onetwenty,onetwenty_onesixty]
+      plt.bar(y,values,align='center',alpha=0.5,color='r')
+      plt.xticks(y,ranges)
+      plt.xlabel('Ranges')
+      plt.ylabel('Length of Tweets')
+      plt.title("Number of @%s's Tweets Sorted by Length" %name)
+      plt.show()
+   if instruction=="B":
+       text=TweetAnalysis().retrieveText(tweets)
+       noURL_text=analyzer.removeURl(text)
+       words=analyzer.SplitTweets(noURL_text)
+       filt=analyzer.removeStopWords(words)
+       counted=analyzer.count_occurences(filt)
+       counted=pd.DataFrame(counted[:15],columns=['Count','Word'])
+       fig, ax = plt.subplots(figsize=(8,8))
+       countplot=counted[:15]
+       countplot.plot.barh(x='Word',y='Count',ax=ax,color="b")
+       ax.set_title("Top 15 Words in @%s' recent Tweets" %name)
+       plt.show()
+   if instruction=="C":
+       time_likes = pd.Series(data=df['likes'].values, index=df['date'])
+       time_likes.plot(figsize=(16, 4), label="likes", legend=True, color='m')
+       time_retweets = pd.Series(data=df['retweets'].values, index=df['date'])
+       time_retweets.plot(figsize=(16, 4), label="retweets", legend=True, color='c')
+       plt.title('Changes in Likes and Retweets for @%s' %name)
+       plt.xlabel('Date')
+       plt.ylabel('Number')
+       plt.show()
+
+
+
+
+
+
+   """
+   zero_forty=0
+   forty_eighty=0
+   eighty_onetwenty=0
+   onetwenty_onesixty=0
+
+   for i in range(0,tweet_count):
+       x=df['len'][i]
+       if x in range(0,40):
+           zero_forty=zero_forty+1
+       if x in range(40,80):
+           forty_eighty=forty_eighty+1
+       if x in range(80,120):
+           eighty_onetwenty=eighty_onetwenty+1
+       if x in range(120,160):
+           onetwenty_onesixty=onetwenty_onesixty+1
+    
+   #start assembling the bar graph
+   ranges=('0 - 40','40 - 80','80 - 120','120 - 160')
+   y=np.arange(len(ranges))
+   values=[zero_forty,forty_eighty,eighty_onetwenty,onetwenty_onesixty]
+   plt.bar(y,values,align='center',alpha=0.5,color='r')
+   plt.xticks(y,ranges)
+   plt.xlabel('Ranges')
+   plt.ylabel('Length of Tweets')
+   plt.title("Number of @%s's Tweets Sorted by Length" %name)
+   plt.show()
+
+   """
+
+
 
   
        
