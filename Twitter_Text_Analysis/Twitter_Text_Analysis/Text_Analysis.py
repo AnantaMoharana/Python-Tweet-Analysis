@@ -21,7 +21,7 @@ class TwitterClient():
     def get_user_timeline_tweets(self,num_tweets):
         tweets=[]
         for tweet in Cursor(self.twitter_client.user_timeline,id=self.twitter_user,tweet_mode='extended').items(num_tweets):
-                tweets.append(tweet)
+            tweets.append(tweet)
         
         return tweets
     
@@ -170,17 +170,16 @@ def build_barGraphpanda(tweets,self):
             Tweeted_word96128.append(tweet)
         if len(tweet)> 129:
             Tweeted_word128160.append(tweet)
-
-    data ={
-        "Length of Tweets" : "0-32 ","33-64 ","65-96 ","97-128 ","129-160+ "
+    data = {
+        "Length of Tweets" : ("0-32 ","33-64 ","65-96 ","97-128 ","129-160+ "),
         "Length": [len(Tweeted_word032),len(Tweeted_word3264),len(Tweeted_word6496),len(Tweeted_word96128),len(Tweeted_word128160)]
-        }
-    dataframe = pd.DataFrame(data=data)
+    }
 
-    df.plot.bar(x="Length of Tweets", y="Length", rot=70, title="Length of Tweets")
-        
-    plt.show(block=True)
+dataframe = pd.DataFrame(data=data)
 
+dataframe.plot.bar( x="Length of Tweets", y="Length", rot=70, title="Length of Tweets")
+    
+plt.show(block=True)
 
   
        
