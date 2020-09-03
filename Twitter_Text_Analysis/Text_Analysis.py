@@ -45,7 +45,7 @@ class TwitterStreams():
     def streamTwitter(self,filename,hashtags):
         listener=TwitterListener(filename)
         auth=self.twitter_athenticator.authenticateApp()
-        stream=Stream(auth,listener)
+        stream=Stream(auth,listener, verify=False)
         stream.filter(track=hashtags)
 
 #Stream Listener
