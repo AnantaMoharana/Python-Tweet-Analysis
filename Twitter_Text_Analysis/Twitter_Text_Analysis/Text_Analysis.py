@@ -1,5 +1,5 @@
 #Twitter Tweet Ananlysis Project
-#Authored by Ananta Moharana, Suryansh Singh, and Sebastian Gil-Avendano all undregrad @Rutgers University
+#Authored by Ananta Moharana, Suryansh Singh, and Sebastian Gil-Avendano all undergrad @Rutgers University
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
